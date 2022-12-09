@@ -1,0 +1,11 @@
+version: '3.8'
+
+services: 
+  app: 
+    container_name: 'micro-videos-typescript-app'
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home/node/app
+      
