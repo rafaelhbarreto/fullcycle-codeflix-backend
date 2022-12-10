@@ -1,4 +1,4 @@
-import {v4 as uuid} from 'uuid';
+import UniqueUUid from '../../../@shared/domain/unique-uuid-vo';
 
 interface CategoryProperties {
   name: string,
@@ -9,10 +9,10 @@ interface CategoryProperties {
 
 export class Category 
 {
-  public readonly id: string; 
+  public readonly id: UniqueUUid; 
 
-  constructor(public readonly props: CategoryProperties, id?: string) {
-    this.id = id ?? uuid(); 
+  constructor(public readonly props: CategoryProperties, id?: UniqueUUid) {
+    this.id = id ?? new UniqueUUid(); 
     this.description = props.description ?? null; 
     this.is_active = props.is_active ?? true; 
     this.date = props.date ?? new Date(); 
