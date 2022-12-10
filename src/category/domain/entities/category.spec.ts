@@ -1,8 +1,10 @@
+import { validate } from "uuid";
 import { Category } from "./category";
+
 
 describe('Category unit tests', () => {
   
-  test('test category constructor', () => {
+  test('category constructor', () => {
     const propsCategory = {
       name: 'Some name',
       description: 'Some description',
@@ -18,7 +20,7 @@ describe('Category unit tests', () => {
     expect(category.date).toBe(propsCategory.date);
   }); 
 
-  test('test category without optional props', () => {
+  test('category without optional props', () => {
 
     const propsCategory = {
       name: 'some name'
@@ -33,4 +35,19 @@ describe('Category unit tests', () => {
     expect(category.date).toBeInstanceOf(Date);
   });
 
+
+  test('id field on category', () => {
+    const categoryProvider = [
+      {props: {name: 'category 1'}},
+      {props: {name: 'category 1'}, id: null},
+      {props: {name: 'category 1'}, id: undefined},
+      {props: {name: 'category 1'}, id: '79cd91b5-41bb-4764-9d9f-350ff9e2ba2f'},
+    ]; 
+
+    categoryProvider.forEach(data => {
+      let category = new Category(data.props, data.id); 
+      expect(category.id).not.toBeNull();
+      expect(validate(category.id)).toBeTruthy();
+    });
+  }); 
 });
