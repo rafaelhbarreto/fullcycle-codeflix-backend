@@ -1,4 +1,4 @@
-import UniqueUUid from "../../../@shared/domain/unique-uuid-vo";
+import UniqueUUid from "../../../@shared/domain/value-objects/unique-uuid-vo"; 
 import { Category } from "./category";
 
 describe('Category unit tests', () => {

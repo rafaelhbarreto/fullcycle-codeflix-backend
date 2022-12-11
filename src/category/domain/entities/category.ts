@@ -1,4 +1,4 @@
-import UniqueUUid from '../../../@shared/domain/unique-uuid-vo';
+import UniqueUUid from '../../../@shared/domain/value-objects/unique-uuid-vo';
 
 interface CategoryProperties {
   name: string,
