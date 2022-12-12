@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
-import { InvalidUuidError } from "../../errors/invalid-uuid-error";
-import UniqueUUid from "./unique-uuid-vo";
+import { InvalidUuidError } from "../../../errors/invalid-uuid-error";
+import UniqueUUid from "./../unique-uuid-vo";
 
 describe('Unique ID value object tests', () => {
   it('should throw an error when the uuid is invalid', () => {

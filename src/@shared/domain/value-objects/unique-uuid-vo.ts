@@ -2,7 +2,7 @@ import { InvalidUuidError } from "../../errors/invalid-uuid-error";
 import { v4 as uuid, validate as validateUUID } from "uuid";
 import { ValueObject } from "./value-object";
 
-export default class UniqueUUid extends ValueObject
+export default class UniqueUUid extends ValueObject<string>
 {
   constructor(protected readonly id?: string) {
     super(id || uuid()); 
