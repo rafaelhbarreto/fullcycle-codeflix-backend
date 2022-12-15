@@ -1,3 +1,4 @@
+import Entity from '../../../@shared/domain/entity/entity';
 import UniqueUUid from '../../../@shared/domain/value-objects/unique-uuid-vo';
 
 interface CategoryProperties {
@@ -7,12 +8,11 @@ interface CategoryProperties {
   date?: Date
 }
 
-export class Category 
+export class Category extends Entity<CategoryProperties>
 {
-  public readonly id: UniqueUUid; 
-
   constructor(public readonly props: CategoryProperties, id?: UniqueUUid) {
-    this.id = id ?? new UniqueUUid(); 
+    super(props, id);
+
     this.description = props.description ?? null; 
     this.is_active = props.is_active ?? true; 
     this.date = props.date ?? new Date(); 

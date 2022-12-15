@@ -1,5 +1,6 @@
 import UniqueUUid from "../../../@shared/domain/value-objects/unique-uuid-vo"; 
 import { Category } from "./category";
+import { validate } from 'uuid'; 
 
 describe('Category unit tests', () => {
   
@@ -46,7 +47,7 @@ describe('Category unit tests', () => {
     categoryProvider.forEach(data => {
       let category = new Category(data.props, data.id); 
       expect(category.id).not.toBeNull();
-      expect(category.id).toBeInstanceOf(UniqueUUid);
+      expect(validate(category.id)).toBeTruthy();
     });
   }); 
 });
