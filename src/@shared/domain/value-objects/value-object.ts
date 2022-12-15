@@ -1,5 +1,12 @@
-export class ValueObject<Type = any> {
-  constructor(protected _value: Type) {}
+import { deepFreeze } from "../utils/object";
+
+export abstract class ValueObject<Type = any> {
+
+  protected readonly _value: Type; 
+
+  constructor(value: Type) {
+    this._value = deepFreeze(value);
+  }
 
   get value(): Type {
     return this._value;
