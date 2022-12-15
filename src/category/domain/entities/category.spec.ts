@@ -50,4 +50,40 @@ describe('Category unit tests', () => {
       expect(validate(category.id)).toBeTruthy();
     });
   }); 
+
+  it('Should activate the category', () => {
+    const cat = new Category({
+      name: 'movies', 
+      is_active: false
+    }); 
+
+    cat.activate();
+
+    expect(cat.is_active).toBeTruthy();
+  });
+
+
+  test('Should deactivate the category', () => {
+    const cat = new Category({
+      name: 'movies' 
+    }); 
+
+    cat.deactivate();
+
+    expect(cat.is_active).toBeFalsy();
+  });
+
+  it('should update the category', () => {
+    const props = {
+      name: "Movie",
+      description: 'Action movies'
+    }
+
+    const category = new Category(props); 
+    category.update('Drama', 'Drama movies');
+
+    expect(category.name).toBe('Drama');
+    expect(category.description).toBe('Drama movies');
+  });
+
 });

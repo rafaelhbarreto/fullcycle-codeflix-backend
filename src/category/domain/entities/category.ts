@@ -45,4 +45,17 @@ export class Category extends Entity<CategoryProperties>
   private set date(date: Date) {
     this.props.date = date; 
   }
+
+  public update(name: string, description: string) {
+    this.props.name = name; 
+    this.props.description = description; 
+  }
+
+  public activate() {
+    this.props.is_active = true; 
+  }
+
+  public deactivate() { 
+    this.props.is_active = false;
+  }
 }
