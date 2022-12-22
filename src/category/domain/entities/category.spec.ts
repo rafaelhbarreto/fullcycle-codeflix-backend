@@ -4,6 +4,10 @@ import { validate } from 'uuid';
 
 describe('Category unit tests', () => {
   
+  beforeEach(() => {
+    Category.validate = jest.fn();
+  }); 
+
   test('category constructor', () => {
     const propsCategory = {
       name: 'Some name',
@@ -14,6 +18,8 @@ describe('Category unit tests', () => {
 
     const category = new Category(propsCategory);
     
+    expect(Category.validate).toHaveBeenCalledTimes(1); 
+
     expect(category.name).toBe(propsCategory.name);
     expect(category.description).toBe(propsCategory.description);
     expect(category.is_active).toBe(propsCategory.is_active);
@@ -82,6 +88,7 @@ describe('Category unit tests', () => {
     const category = new Category(props); 
     category.update('Drama', 'Drama movies');
 
+    expect(Category.validate).toHaveBeenCalledTimes(2); 
     expect(category.name).toBe('Drama');
     expect(category.description).toBe('Drama movies');
   });

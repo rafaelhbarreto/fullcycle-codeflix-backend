@@ -1,3 +1,4 @@
+import ValidatorRules from '../../../@shared/validation/validation-rules';
 import Entity from '../../../@shared/domain/entity/entity';
 import UniqueUUid from '../../../@shared/domain/value-objects/unique-uuid-vo';
 
@@ -11,11 +12,20 @@ interface CategoryProperties {
 export class Category extends Entity<CategoryProperties>
 {
   constructor(public readonly props: CategoryProperties, id?: UniqueUUid) {
+
+    Category.validate(props); 
+
     super(props, id);
 
     this.description = props.description ?? null; 
     this.is_active = props.is_active ?? true; 
     this.date = props.date ?? new Date(); 
+  }
+
+  static validate(props: Omit<CategoryProperties, 'id' | 'date'>): void {
+    ValidatorRules.values('name', props.name).required().string(); 
+    ValidatorRules.values('description', props.description).string();
+    ValidatorRules.values('is_active', props.is_active).bool();
   }
 
   get name(): string {
@@ -47,6 +57,12 @@ export class Category extends Entity<CategoryProperties>
   }
 
   public update(name: string, description: string) {
+    
+    Category.validate({
+      name,
+      description
+    }); 
+
     this.props.name = name; 
     this.props.description = description; 
   }
