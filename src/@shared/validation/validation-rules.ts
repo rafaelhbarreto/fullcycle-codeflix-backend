@@ -17,7 +17,7 @@ export default class ValidatorRules {
   } 
 
   public string(): this {
-    if (typeof this.value !== 'string') {
+    if (!empty(this.value) && typeof this.value !== 'string') {
       throw new ValidationError(`The field ${this.property} must be a string`);
     }
 
@@ -41,10 +41,14 @@ export default class ValidatorRules {
   }
 
   public bool(): this {
-    if(typeof this.value !== 'boolean') {
+    if(!empty(this.value) && typeof this.value !== 'boolean') {
       throw new ValidationError(`The field ${this.property} must be a boolean`); 
     }
 
     return this;
   }
+}
+
+export function empty(value: any) {
+  return value === undefined || value === null;
 }

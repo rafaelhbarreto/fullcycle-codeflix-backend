@@ -17,13 +17,13 @@ export class Category extends Entity<CategoryProperties>
 
     super(props, id);
 
-    this.description = props.description ?? null; 
+    this.description = props.description; 
     this.is_active = props.is_active ?? true; 
     this.date = props.date ?? new Date(); 
   }
 
   static validate(props: Omit<CategoryProperties, 'id' | 'date'>): void {
-    ValidatorRules.values('name', props.name).required().string(); 
+    ValidatorRules.values('name', props.name).required().string();
     ValidatorRules.values('description', props.description).string();
     ValidatorRules.values('is_active', props.is_active).bool();
   }
@@ -33,11 +33,11 @@ export class Category extends Entity<CategoryProperties>
   }
 
   get description(): string {
-    return this.props.description;
+    return this.props.description ?? null;
   }
 
   private set description(str: string) {
-    this.props.description = str; 
+    this.props.description = str ?? null; 
   }
 
   get is_active(): boolean {
