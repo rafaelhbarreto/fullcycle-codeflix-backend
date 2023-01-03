@@ -9,8 +9,9 @@ export abstract class Validator<PropsValidated> implements ValidatorInterface<Pr
     const errors = validateSync(data); 
 
     if (errors.length) {
+      this.errors = {};
       for (const error of errors) {
-        const field = error.property; 
+        let field = error.property; 
         this.errors[field] = Object.values(error.constraints); 
       }
     } else {
