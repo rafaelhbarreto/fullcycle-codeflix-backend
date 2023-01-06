@@ -1,4 +1,3 @@
-import ValidatorRules from '../../../@shared/validation/validation-rules';
 import Entity from '../../../@shared/domain/entity/entity';
 import UniqueUUid from '../../../@shared/domain/value-objects/unique-uuid-vo';
 import CategoryValidatorFactory from './category-validator';
@@ -22,12 +21,6 @@ export class Category extends Entity<CategoryProperties>
     this.is_active = props.is_active ?? true; 
     this.date = props.date ?? new Date(); 
   }
-
-  // static validate(props: Omit<CategoryProperties, 'id' | 'date'>): void {
-  //   ValidatorRules.values('name', props.name).required().string();
-  //   ValidatorRules.values('description', props.description).string();
-  //   ValidatorRules.values('is_active', props.is_active).bool();
-  // }
 
   public static validate(categoryProps: CategoryProperties) {
     const validator = CategoryValidatorFactory.create(); 

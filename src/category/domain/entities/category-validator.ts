@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsNotEmpty, isNotEmpty, IsOptional, IsString, isString, MaxLength, maxLength } from "class-validator";
+import { IsBoolean, IsDate, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
 import { Validator } from "../../../@shared/validation/validator";
 import { CategoryProperties } from "./category";
 
@@ -29,7 +29,7 @@ export class CategoryRules
 export class CategoryValidator extends Validator<CategoryRules> 
 {
   public validate(categoryProps: CategoryProperties): boolean {
-    return super.validate(new CategoryRules(categoryProps));
+    return super.validate(new CategoryRules(categoryProps ?? {} as any));
   }
 }
 
